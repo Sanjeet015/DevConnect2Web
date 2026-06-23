@@ -3,8 +3,8 @@
 - Signup on AWS 
 - Launch instance
 - chmod 400 <secret>.pem
-- ssh -i "devTinder-secret.pem" ubuntu@ec2-43-204-96-49.ap-south-1.compute.amazonaws.com
-- Install Node version 16.17.0
+- ssh -i "DevConnect-SECRET.pem" ubuntu@ec2-13-211-128-168.ap-southeast-2.compute.amazonaws.com
+- Install Node version 22.14.0
 - Git clone
 - Frontend    
     - npm install  -> dependencies install
@@ -20,7 +20,7 @@
     - updated DB password
     - allowed ec2 instance public IP on mongodb server
     - npm intsall pm2 -g
-    - pm2 start npm --name "devTinder-backend" -- start
+    - pm2 start npm --name "DevConnect-backend" -- start
     - pm2 logs
     - pm2 list, pm2 flush <name> , pm2 stop <name>, pm2 delete <name>
     - config nginx - /etc/nginx/sites-available/default
