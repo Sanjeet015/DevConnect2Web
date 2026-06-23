@@ -12,7 +12,7 @@ import Connections from "./Components/Connections"
 import Requests from "./Components/Requests"
 import Messages from "./Components/Messages"
 import Groups from "./Components/Groups"
-import GroupWorkspace from "./Components/GroupWorkSpace"
+import GroupWorkspace from "./Components/GroupWorkspace"
 
 function App() {
 
