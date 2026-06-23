@@ -12,6 +12,7 @@ import Connections from "./Components/Connections"
 import Requests from "./Components/Requests"
 import Messages from "./Components/Messages"
 import Groups from "./Components/Groups"
+import GroupWorkspace from "./Components/GroupWorkSpace"
 
 function App() {
 
@@ -30,6 +31,7 @@ function App() {
               <Route path="/requests" element={<Requests/>}/>
               <Route path="/messages" element={<Messages/>}/>
               <Route path="/groups" element={<Groups/>}/>
+              <Route path="/group/:groupId" element={<GroupWorkspace/>}/>
             </Route>
             
           </Routes>

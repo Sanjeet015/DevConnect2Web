@@ -61,7 +61,7 @@ function Sidebar() {
           <FiMessageSquare size={22} />
         </Link>
 
-        <Link to="/messages">
+        <Link to="/groups">
           <RiGroupLine size={22} />
         </Link>
 
