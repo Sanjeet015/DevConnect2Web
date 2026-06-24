@@ -2,9 +2,11 @@ import React, { useEffect, useState } from "react";
 import { BASE_URL } from "../utils/constants";
 import axios from "axios";
 import { toast } from "react-hot-toast";
+import { useNavigate } from "react-router-dom";
 import Profile from "./Profile"; // Import your Profile component
 
 const Connections = () => {
+  const navigate = useNavigate();
   const [connectionsList, setConnectionsList] = useState([]);
   const [loading, setLoading] = useState(true);
 
@@ -13,6 +15,25 @@ const Connections = () => {
   const [selectedUser, setSelectedUser] = useState(null);
 
   const [removing, setRemoving] = useState(false);
+  const [startingChat, setStartingChat] = useState({}); // userId -> boolean
+
+  const handleStartChat = async (userId) => {
+    try {
+      setStartingChat(prev => ({ ...prev, [userId]: true }));
+      const res = await axios.post(`${BASE_URL}/chat/start/${userId}`, {}, { withCredentials: true });
+      const chatId = res.data?.data?._id;
+      if (chatId) {
+        navigate("/messages", { state: { autoSelectChatId: chatId } });
+      } else {
+        toast.error("Could not start chat");
+      }
+    } catch (err) {
+      console.error(err);
+      toast.error(err.response?.data?.message || "Failed to start chat");
+    } finally {
+      setStartingChat(prev => ({ ...prev, [userId]: false }));
+    }
+  };
 
   const fetchConnection = async () => {
     try {
@@ -127,8 +148,12 @@ const Connections = () => {
                   View
                 </button>
 
-                <button className="flex-[1.5] flex items-center justify-center gap-2 py-2.5 px-4 bg-[#0091ff] hover:bg-[#007be6] text-white text-sm font-semibold rounded-xl shadow-md">
-                  Chat
+                <button 
+                  onClick={() => handleStartChat(dev._id)}
+                  disabled={startingChat[dev._id]}
+                  className="flex-[1.5] flex items-center justify-center gap-2 py-2.5 px-4 bg-[#0091ff] hover:bg-[#007be6] disabled:bg-[#0091ff]/60 text-white text-sm font-semibold rounded-xl shadow-md transition-colors"
+                >
+                  {startingChat[dev._id] ? "Connecting..." : "Chat"}
                 </button>
 
                 <button
