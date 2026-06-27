@@ -12,7 +12,6 @@ function Body() {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const user = useSelector((store) => store.user);
-  // Fix #15: Show a full-screen spinner while the session is being verified on mount
   const [isBootstrapping, setIsBootstrapping] = useState(true);
 
   const fetchUser = async () => {
@@ -40,20 +39,19 @@ function Body() {
     }
   }, []);
 
-  // Full-screen loading state while verifying auth session
   if (isBootstrapping) {
     return (
-      <div className="min-h-screen flex items-center justify-center bg-[#f8fafc]">
+      <div className="min-h-screen flex items-center justify-center bg-slate-50 dark:bg-zinc-950 transition-colors">
         <div className="flex flex-col items-center gap-4">
-          <div className="w-10 h-10 border-[3px] border-slate-200 border-t-[#0091ff] rounded-full animate-spin" />
-          <p className="text-sm font-semibold text-slate-400">Loading workspace...</p>
+          <div className="w-10 h-10 border-[3px] border-slate-200 dark:border-zinc-800 border-t-indigo-600 dark:border-t-indigo-500 rounded-full animate-spin" />
+          <p className="text-sm font-semibold text-slate-400 dark:text-zinc-500">Initializing console...</p>
         </div>
       </div>
     );
   }
 
   return (
-    <div className="min-h-screen flex flex-col">
+    <div className="min-h-screen flex flex-col bg-slate-50 dark:bg-zinc-950 transition-colors">
       <Navbar />
 
       <div className="flex flex-1">
@@ -64,7 +62,7 @@ function Body() {
             user ? "md:ml-64" : ""
           }`}
         >
-          <div className="flex-1 pb-16 md:pb-0">
+          <div className="flex-grow pb-20 md:pb-0">
             <Outlet />
           </div>
           <Footer />

@@ -1,5 +1,7 @@
 @import "tailwindcss";
 
+@custom-variant dark (&:where(.dark, .dark *));
+
 @theme {
   --font-sans: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
 }
@@ -11,7 +13,13 @@
     background-color: #f8fafc;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
+    transition: background-color 0.3s ease, color 0.3s ease;
   }
+}
+
+.dark body {
+  background-color: #09090b;
+  color: #fafafa;
 }
 
 /* Custom Scrollbars */
@@ -23,11 +31,17 @@
   background: transparent;
 }
 ::-webkit-scrollbar-thumb {
-  background: #e2e8f0;
+  background: #cbd5e1;
   border-radius: 9999px;
 }
+.dark ::-webkit-scrollbar-thumb {
+  background: #27272a;
+}
 ::-webkit-scrollbar-thumb:hover {
-  background: #cbd5e1;
+  background: #94a3b8;
+}
+.dark ::-webkit-scrollbar-thumb:hover {
+  background: #3f3f46;
 }
 
 /* Shimmer Loading Skeleton */
@@ -42,6 +56,12 @@
 
 .skeleton-shimmer {
   background: linear-gradient(90deg, #f8fafc 25%, #f1f5f9 50%, #f8fafc 75%);
+  background-size: 200% 100%;
+  animation: shimmer 1.6s infinite linear;
+}
+
+.dark .skeleton-shimmer {
+  background: linear-gradient(90deg, #18181b 25%, #27272a 50%, #18181b 75%);
   background-size: 200% 100%;
   animation: shimmer 1.6s infinite linear;
 }
@@ -111,6 +131,62 @@
 
 /* Border Shimmer glow on inputs */
 .glow-ring:focus {
-  border-color: #0091ff;
-  box-shadow: 0 0 0 3px rgba(0, 145, 255, 0.12);
+  border-color: #6366f1;
+  box-shadow: 0 0 0 3px rgba(99, 102, 241, 0.12);
+}
+
+/* Premium glass panel classes */
+.glass-panel {
+  background: rgba(255, 255, 255, 0.7);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(241, 245, 249, 0.8);
+}
+
+.dark .glass-panel {
+  background: rgba(9, 9, 11, 0.8);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(39, 39, 42, 0.5);
+}
+
+.hero-gradient {
+  background: radial-gradient(circle at top right, rgba(99, 102, 241, 0.06), transparent 50%);
+}
+
+.dark .hero-gradient {
+  background: radial-gradient(circle at top right, rgba(99, 102, 241, 0.03), transparent 50%);
+}
+
+/* Github Contribution Grid Cells */
+.github-cell {
+  background-color: #ebedf0;
+  border-radius: 2px;
+}
+.dark .github-cell {
+  background-color: #161b22;
+}
+.github-cell-1 {
+  background-color: #9be9a8;
+}
+.dark .github-cell-1 {
+  background-color: #0e4429;
+}
+.github-cell-2 {
+  background-color: #40c463;
+}
+.dark .github-cell-2 {
+  background-color: #006d32;
+}
+.github-cell-3 {
+  background-color: #30a14e;
+}
+.dark .github-cell-3 {
+  background-color: #26a641;
+}
+.github-cell-4 {
+  background-color: #216e39;
+}
+.dark .github-cell-4 {
+  background-color: #39d353;
 }
