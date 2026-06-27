@@ -1,7 +1,7 @@
 import React, { useEffect, useState, useRef } from "react";
 import axios from "axios";
 import { io } from "socket.io-client";
-import { BASE_URL } from "../utils/constants";
+import { BASE_URL, SOCKET_URL } from "../utils/constants";
 import { useSelector } from "react-redux";
 import { useLocation } from "react-router-dom";
 import { FiSend, FiChevronLeft, FiMessageSquare } from "react-icons/fi";
@@ -30,8 +30,7 @@ function Messages() {
   useEffect(() => {
     if (!currentUser) return;
 
-    const socketUrl = BASE_URL.replace("/api", "");
-    const socket = io(socketUrl, {
+    const socket = io(SOCKET_URL, {
       withCredentials: true,
       transports: ["websocket", "polling"],
     });

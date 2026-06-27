@@ -11,7 +11,7 @@ import { RiGroupLine } from "react-icons/ri";
 import { Link, useLocation } from "react-router-dom";
 import axios from "axios";
 import { io } from "socket.io-client";
-import { BASE_URL } from "../utils/constants";
+import { BASE_URL, SOCKET_URL } from "../utils/constants";
 import { useSelector } from "react-redux";
 
 function Sidebar() {
@@ -43,8 +43,7 @@ function Sidebar() {
     fetchInitialCounts();
 
     
-    const socketUrl = BASE_URL.replace("/api", "");
-    const socket = io(socketUrl, {
+    const socket = io(SOCKET_URL, {
       withCredentials: true,
       transports: ["websocket", "polling"],
     });

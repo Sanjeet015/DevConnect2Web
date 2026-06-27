@@ -2,7 +2,7 @@ import React, { useEffect, useState, useRef } from "react";
 import { useParams, useNavigate, useLocation } from "react-router-dom";
 import axios from "axios";
 import { io } from "socket.io-client";
-import { BASE_URL } from "../utils/constants";
+import { BASE_URL, SOCKET_URL } from "../utils/constants";
 import { useSelector } from "react-redux";
 import { FiUsers, FiArrowLeft, FiPlus, FiTrash2, FiShield, FiUserCheck, FiList, FiCheck, FiX, FiInfo, FiSend, FiMessageSquare } from "react-icons/fi";
 
@@ -54,8 +54,7 @@ const GroupWorkspace = () => {
   useEffect(() => {
     if (!groupId) return;
 
-    const socketUrl = BASE_URL.replace("/api", "");
-    const socket = io(socketUrl, {
+    const socket = io(SOCKET_URL, {
       withCredentials: true,
       transports: ["websocket", "polling"],
     });
